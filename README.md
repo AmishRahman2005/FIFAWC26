@@ -6,6 +6,13 @@ Built with a **FastAPI backend** utilizing ensembled ELO, Dixon-Coles, and XGBoo
 
 ---
 
+## 🌐 Live Deployments
+
+* **Live Application (Frontend)**: [https://wcpredictor-26.vercel.app](https://wcpredictor-26.vercel.app)
+* **Production API (Backend)**: [https://fifa-wc26-backend.onrender.com](https://fifa-wc26-backend.onrender.com)
+
+---
+
 ## 🚀 Key Features
 
 * **AI Match Predictions**: Compiles ensembled probabilities (Home Win, Draw, Away Win) for all World Cup fixtures.
@@ -110,6 +117,22 @@ Run the Next.js development server:
 npm run dev
 ```
 Open **[http://localhost:3000](http://localhost:3000)** in your browser to view the application.
+
+
+---
+
+## ☁️ Cloud Deployment Configuration
+
+### 1. Backend on Render (Free Tier)
+To bypass memory limitations (~512MB RAM) and prevent Out-Of-Memory (OOM) build failures during sequential model training, the production build uses a lightweight seeding script:
+* **Build Command**: `pip install -r backend/requirements.txt && python backend/run_deploy_pipeline.py`
+* **Start Command**: `uvicorn backend.main:app --host 0.0.0.0 --port 10000`
+* **Mechanism**: Bypasses offline model training by loading the checked-in weights (`forecasting_models.pkl`), populating the SQLite DB, and running the simulation index in under 15 seconds using under 100MB of RAM.
+
+### 2. Frontend on Vercel
+* **Root Directory**: `frontend`
+* **Framework Preset**: `Next.js`
+* **Environment Variables**: Add `NEXT_PUBLIC_API_URL` set to your live Render service url (e.g. `https://fifa-wc26-backend.onrender.com`).
 
 ---
 
