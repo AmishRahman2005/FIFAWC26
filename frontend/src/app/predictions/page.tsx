@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
 import Link from "next/link";
 import { Filter, Calendar, Award, Compass, Search } from "lucide-react";
 
@@ -221,7 +222,7 @@ export default function Predictions() {
   useEffect(() => {
     const fetchPredictions = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/predictions");
+        const res = await fetch(`${API_BASE_URL}/api/predictions`);
         if (res.ok) {
           const data = await res.json();
           // Enrich with group details from lookup

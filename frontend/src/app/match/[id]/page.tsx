@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../config";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { Calendar, ChevronLeft, ShieldCheck, HelpCircle, BarChart3, TrendingUp, Info } from "lucide-react";
@@ -142,7 +143,7 @@ export default function MatchCenter() {
   useEffect(() => {
     const fetchMatchDetails = async () => {
       try {
-        const res = await fetch(`http://localhost:8000/api/match/${matchId}`);
+        const res = await fetch(`${API_BASE_URL}/api/match/${matchId}`);
         if (res.ok) {
           const data = await res.json();
           setMatch(data);

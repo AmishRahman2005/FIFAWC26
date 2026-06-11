@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
 import { ArrowUpDown, Award, Star, Compass, Shield } from "lucide-react";
 
 interface TeamRow {
@@ -119,7 +120,7 @@ export default function Rankings() {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/teams");
+        const res = await fetch(`${API_BASE_URL}/api/teams`);
         if (res.ok) {
           const data = await res.json();
           setTeams(data);

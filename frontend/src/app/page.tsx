@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "./config";
 import Link from "next/link";
 import { TrendingUp, ShieldAlert, Award, Star, Flame, Calendar, Info } from "lucide-react";
 
@@ -279,8 +280,8 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const teamsRes = await fetch("http://localhost:8000/api/teams");
-        const matchesRes = await fetch("http://localhost:8000/api/predictions");
+        const teamsRes = await fetch(`${API_BASE_URL}/api/teams`);
+        const matchesRes = await fetch(`${API_BASE_URL}/api/predictions`);
         
         if (teamsRes.ok && matchesRes.ok) {
           const teams = await teamsRes.json();

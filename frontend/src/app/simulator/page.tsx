@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
 import { Award, RefreshCw, Zap, TrendingUp, HelpCircle } from "lucide-react";
 
 // Full mock data for default predicted bracket
@@ -77,7 +78,7 @@ export default function BracketSimulator() {
     // Load default odds on startup
     const loadDefaultOdds = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/teams");
+        const res = await fetch(`${API_BASE_URL}/api/teams`);
         if (res.ok) {
           const data = await res.json();
           setOdds(data.slice(0, 10)); // Top 10
@@ -248,7 +249,7 @@ export default function BracketSimulator() {
     setSimulating(true);
     
     try {
-      const res = await fetch("http://localhost:8000/api/simulate-custom", {
+      const res = await fetch(`${API_BASE_URL}/api/simulate-custom`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ boosts: activeBoosts })

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
 import Link from "next/link";
 import { Search, Award, Star, Activity, SlidersHorizontal, User, Shield, Compass } from "lucide-react";
 
@@ -101,7 +102,7 @@ export default function PlayersPage() {
   useEffect(() => {
     const fetchPlayers = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/player-predictions");
+        const res = await fetch(`${API_BASE_URL}/api/player-predictions`);
         if (res.ok) {
           const data = await res.json();
           setPlayers(data);

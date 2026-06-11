@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../config";
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, BarChart, Bar, ScatterChart, Scatter, LabelList } from "recharts";
 import { TrendingUp, BarChart3, ScatterChart as ScatterIcon, Landmark, Info } from "lucide-react";
 
@@ -52,7 +53,7 @@ export default function Analytics() {
     // Attempt to fetch from API
     const fetchAnalytics = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/analytics");
+        const res = await fetch(`${API_BASE_URL}/api/analytics`);
         if (res.ok) {
           const data = await res.json();
           
